@@ -35,7 +35,7 @@ $data 				= date("d/m/Y H:i:s ");
 		$Vai .= '</body></html>';
                 
                 
-require_once("phpmailer/class.phpmailer.php");
+require_once("./phpmailer/class.phpmailer.php");
 
 define('GUSER', 'noreplay.dooboks@gmail.com');	// <-- Insira aqui o seu GMail
 define('GPWD', 's3nh@n0v@');		// <-- Insira aqui a senha do seu GMail
