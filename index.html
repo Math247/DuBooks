@@ -288,7 +288,7 @@
           <li>Acabamento- Hot-melt ou PUR</li>
         </ul>
         <p>Obs: Frete pago pelo solicitante.</p>
-        <form action="./assets/php/email.php" method="POST">
+        <form action="/assets/php/email.php" method="POST">
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="Email">Email</label>
@@ -378,7 +378,7 @@
             <textarea class="form-control" id="mensagem" name="mensagem" rows="3"></textarea>
           </div>
           <div class="form-group form-file-upload form-file-multiple col-md-6">
-            <input type="file" name="file" id="file" multiple="" class="inputFileHidden">
+            <input type="file" name="arquivo" id="arquivo" multiple="" class="inputFileHidden">
             <div class="input-group">
               <input type="text" name="name" id="name" class="form-control inputFileVisible" placeholder="Arquivo">
               <span class="input-group-btn">
@@ -463,7 +463,7 @@
   <!--   Core JS Files   -->
   <script>
     var inputNome = document.getElementById('name');
-    var inputFicheiro = document.getElementById('file');
+    var inputFicheiro = document.getElementById('arquivo');
 
     inputFicheiro.addEventListener('change', function () {
       var nome = this.files[0].name;
