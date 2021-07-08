@@ -11,7 +11,7 @@ $qtdpagpretobranco	= $_POST["qtdpagpretobranco"];
 $totpag				= $_POST["totpag"];
 $tiragem			= $_POST["tiragem"];
 $mensagem			= $_POST["mensagem"];	// Pega os valores do campo Mensagem
-$arquivo   			= $_FILES["arquivo"];
+$arquivo   			= $_FILES["arquivo"]['tmp_name'];
 $data 				= date("d/m/Y H:i:s ");
 
 // Variável que junta os valores acima e monta o corpo do email
@@ -59,7 +59,7 @@ function smtpmailer($para, $copia, $copiaoculta, $de, $de_nome, $assunto, $corpo
 	$mail->AddAddress($para);
 	$mail->AddBcc($copia);
 	$mail->AddCc($copiaoculta);
-	$mail->AddAttachment($arquivo['tmp_name'], $arquivo['name']); //anexando arquivo
+	$mail->AddAttachment($arquivo); //anexando arquivo
 	if(!$mail->Send()) {
 		$error = 'Mail error: '.$mail->ErrorInfo; 
 		return false;
