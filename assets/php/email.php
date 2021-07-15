@@ -11,7 +11,9 @@ $qtdpagpretobranco	= $_POST["qtdpagpretobranco"];
 $totpag				= $_POST["totpag"];
 $tiragem			= $_POST["tiragem"];
 $mensagem			= $_POST["mensagem"];	// Pega os valores do campo Mensagem
-$arquivo   			= $_FILES["arquivo"]['tmp_name'];
+$arquivo   			= $_FILES["arquivo"];
+$arquivo_nome 		= $arquivo['name']; // Recupera o nome do arquivo
+$arquivo_caminho 	= $arquivo['tmp_name']; // Recupera o caminho temporario do arquivo no servidor
 $data 				= date("d/m/Y H:i:s ");
 
 // Variável que junta os valores acima e monta o corpo do email
@@ -31,6 +33,7 @@ $data 				= date("d/m/Y H:i:s ");
 		$Vai .= '<tr><td bgcolor="#C0C0C0"><strong>Tiragem:</strong> </td><td>' . $tiragem . '</td></tr>';
 		$Vai .= '<tr><td bgcolor="#C0C0C0"><strong>Mensagem:</strong> </td><td>' . $mensagem . '</td></tr>';
 		$Vai .= '<tr><td bgcolor="#C0C0C0"><strong>Enviado do site em:</strong> </td><td>' . $data . '</td></tr>';
+		$Vai .= '<tr><td bgcolor="#C0C0C0"><strong>Nome do Arquivo:</strong> </td><td>' . $arquivo_nome . '</td></tr>';
 		$Vai .= '</table>';
 		$Vai .= '</body></html>';
                 
@@ -59,7 +62,7 @@ function smtpmailer($para, $copia, $copiaoculta, $de, $de_nome, $assunto, $corpo
 	$mail->AddAddress($para);
 	$mail->AddBcc($copia);
 	$mail->AddCc($copiaoculta);
-	$mail->AddAttachment($arquivo); //anexando arquivo
+	$mail->AddAttachment($arquivo_caminho, $arquivo_nome); //anexando arquivo
 	if(!$mail->Send()) {
 		$error = 'Mail error: '.$mail->ErrorInfo; 
 		return false;
