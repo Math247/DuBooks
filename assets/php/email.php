@@ -46,11 +46,13 @@ $body .= '</body></html>';
                 
 define('GUSER', 'noreplay.dooboks@gmail.com');	// <-- Insira aqui o seu GMail
 define('GPWD', 's3nh@n0v@');		// <-- Insira aqui a senha do seu GMail
-define('FROM_NAME', 'Produtora DuBooks');		// <-- Insira aqui a senha do seu GMail
+define('FROM_NAME', 'Produtora DoBooks');		// <-- Insira aqui a senha do seu GMail
 
 function smtpmailer($para, $copia, $copiaoculta, $de, $de_nome, $assunto, $corpo,$arquivo_caminho,$arquivo_nome) { 
 	global $error;
 	$mail = new PHPMailer();
+	$mail->IsHTML(true);
+	$mail->CharSet = "utf-8";
 	$mail->isSMTP();
 
 	//Enable SMTP debugging
@@ -79,9 +81,9 @@ function smtpmailer($para, $copia, $copiaoculta, $de, $de_nome, $assunto, $corpo
 	$mail->Username = GUSER;
 	$mail->Password = GPWD;
 
-	$mail->setFrom(GUSER, 'First Last');
-	$mail->addReplyTo('fmmarmello@gmail.com', 'First Last');//responder para (email do usuario que enviou)
-	$mail->addAddress($para, 'John Doe');//PARA
+	$mail->setFrom(GUSER);
+	$mail->addReplyTo('matheuschabib@gmail.com');//responder para (email do usuario que enviou)
+	$mail->addAddress($para);//PARA
 	// $mail->addCC($copia);
     // $mail->addBCC($copiaoculta);
 
@@ -95,7 +97,7 @@ function smtpmailer($para, $copia, $copiaoculta, $de, $de_nome, $assunto, $corpo
 	//Replace the plain text body with one created manually
 	$mail->AltBody = 'Corpo alternativo';
 
-	//Attach an image file
+	//Attach a file
 	$mail->addAttachment($arquivo_caminho,$arquivo_nome);
 
 	//send the message, check for errors
@@ -115,7 +117,7 @@ function smtpmailer($para, $copia, $copiaoculta, $de, $de_nome, $assunto, $corpo
 // o nome do email que envia a mensagem, o Assunto da mensagem e por último a variável com o corpo do email.
 
  //if (smtpmailer('matheuschabib@gmail.com', 'gushabib@live.com', 'gustavo@qrc.com.br', 'GUSER', 'Formulario do Site', 'DoBooks - Contato pelo site', $body)) {
- if (smtpmailer('fmmarmello@gmail.com', '', '', GUSER, FROM_NAME, 'DoBooks - Contato pelo site', $body,$arquivo_caminho,$arquivo_nome)) {
+ if (smtpmailer('matheuschabib@gmail.com', 'gushabib@live.com', 'gustavo@qrc.com.br', GUSER, FROM_NAME, 'DoBooks - Contato pelo site', $body,$arquivo_caminho,$arquivo_nome)) {
 
 	Header("location: ../../index.html"); // Redireciona para uma página de obrigado.
 
