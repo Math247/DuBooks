@@ -40,13 +40,12 @@ $body .= '<tr><td bgcolor="#C0C0C0"><strong>Total de Páginas:</strong> </td><td
 $body .= '<tr><td bgcolor="#C0C0C0"><strong>Tiragem:</strong> </td><td>' . $tiragem . '</td></tr>';
 $body .= '<tr><td bgcolor="#C0C0C0"><strong>Mensagem:</strong> </td><td>' . $mensagem . '</td></tr>';
 $body .= '<tr><td bgcolor="#C0C0C0"><strong>Enviado do site em:</strong> </td><td>' . $data . '</td></tr>';
-$body .= '<tr><td bgcolor="#C0C0C0"><strong>Nome do Arquivo:</strong> </td><td>' . $arquivo_nome . '</td></tr>';
 $body .= '</table>';
 $body .= '</body></html>';
                 
 define('GUSER', 'noreplay.dooboks@gmail.com');	// <-- Insira aqui o seu GMail
 define('GPWD', 's3nh@n0v@');		// <-- Insira aqui a senha do seu GMail
-define('FROM_NAME', 'Produtora DoBooks');		// <-- Insira aqui a senha do seu GMail
+define('FROM_NAME', 'DoBooks');		// <-- Insira aqui a senha do seu GMail
 
 function smtpmailer($para, $copia, $copiaoculta, $de, $de_nome, $assunto, $corpo,$arquivo_caminho,$arquivo_nome) { 
 	global $error;
@@ -82,7 +81,7 @@ function smtpmailer($para, $copia, $copiaoculta, $de, $de_nome, $assunto, $corpo
 	$mail->Password = GPWD;
 
 	$mail->setFrom(GUSER);
-	$mail->addReplyTo('matheuschabib@gmail.com');//responder para (email do usuario que enviou)
+	$mail->addReplyTo('atendimento@dobooks.com.br');//responder para (email do usuario que enviou)
 	$mail->addAddress($para);//PARA
 	// $mail->addCC($copia);
     // $mail->addBCC($copiaoculta);
@@ -117,9 +116,9 @@ function smtpmailer($para, $copia, $copiaoculta, $de, $de_nome, $assunto, $corpo
 // o nome do email que envia a mensagem, o Assunto da mensagem e por último a variável com o corpo do email.
 
  //if (smtpmailer('matheuschabib@gmail.com', 'gushabib@live.com', 'gustavo@qrc.com.br', 'GUSER', 'Formulario do Site', 'DoBooks - Contato pelo site', $body)) {
- if (smtpmailer('matheuschabib@gmail.com', 'gushabib@live.com', 'gustavo@qrc.com.br', GUSER, FROM_NAME, 'DoBooks - Contato pelo site', $body,$arquivo_caminho,$arquivo_nome)) {
+ if (smtpmailer('atendimento@dobooks.com.br', '', '', GUSER, FROM_NAME, 'DoBooks - Contato pelo site', $body,$arquivo_caminho,$arquivo_nome)) {
 
-	Header("location: ../../index.html"); // Redireciona para uma página de obrigado.
+	Header("location: ../../obrigado.html"); // Redireciona para uma página de obrigado.
 
 }
 //if (!empty($error)) echo $error;
