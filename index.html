@@ -110,7 +110,7 @@
       </div>
       <div class="content-center">
         <div class="container">
-          <h1 class="title">Somos especialistas em livros sob demanda.</h1>
+          <h1 class="title">Somos especialistas em produção de livros sob demanda.</h1>
           <div class="text-center">
             <button class="btn btn-primary" onclick="window.location.href='#orçamento'">Peça sua prova Gratuita</button>
           </div>
@@ -125,9 +125,8 @@
           <div class="col-md-8 ml-auto mr-auto text-center">
             <h2 class="title">Quem Somos</h2>
             <h5 class="description">Se você é Editor, Editora ou vendedor gráfico, achou a Solução de melhor Qualidade e
-              menor Custo para produzir seu livro sob demanda, e o que é
-              melhor, daqui seu livro sai direto para o destino que você escolher: seu cliente, sua livraria, sua
-              empresa....</h5>
+              menor Custo para produzir seu livro sob demanda, e o que é melhor, daqui seu livro pode sair direto para o
+              destino que você escolher: seu cliente, sua livraria, sua empresa....</h5>
           </div>
         </div>
         <hr>
@@ -156,7 +155,7 @@
                 assim pagar um preço justo.
               </p>
               <p>
-                Além disso, com a DuBooks, além da impressão, entregamos, em todo Brasil, o seu livro diretamente para o
+                Além disso, com a DoBooks, além da impressão, entregamos, em todo Brasil, o seu livro diretamente para o
                 leitor
                 ou para o seu autor, no caso das editoras.
               </p>
@@ -288,17 +287,17 @@
           <li>Acabamento- Hot-melt ou PUR</li>
         </ul>
         <p>Obs: Frete pago pelo solicitante.</p>
-        <form action="/assets/php/email.php" method="POST" enctype="multipart/form-data">
+        <form action="/assets/php/email.php" method="POST" enctype="multipart/form-data" name="f1">
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="Email">Email</label>
-              <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
-                placeholder="name@example.com" required>
+              <input type="email" class="form-control emailClass" id="email" name="email" aria-describedby="emailHelp"
+                placeholder="name@example.com" onblur="validarEmail(f1.email);" required>
             </div>
             <div class="form-group col-md-6">
               <label for="Telefone">Telefone</label>
               <input type="text" class="form-control" id="telefone" name="telefone" placeholder="(00)00000-0000"
-                required>
+                onkeyup="mascara( this, mtel );" maxlength="15">
             </div>
           </div>
           <div class="form-row">
@@ -318,9 +317,10 @@
               <label for="Papel_de_Miolo">Papel de Miolo</label>
               <select class="form-control" id="papelmiolo" name="papelmiolo">
                 <option value="">Escolha o Papel de Miolo</option>
-                <option value="off set 75g (branco)">off set 75g (branco)</option>
-                <option value="off set 90g (branco)">off set 90g (branco)</option>
+                <option value="off set 75g">off set 75g</option>
+                <option value="off set 90g">off set 90g</option>
                 <option value="Pólen 80g">Pólen 80g</option>
+                <option value="Pólen 90g">Pólen 90g</option>
                 <option value="Couche 90g">Couche 90g</option>
               </select>
             </div>
@@ -328,10 +328,10 @@
               <label for="Papel_de_Capa">Papel de Capa</label>
               <select class="form-control" id="papeldecapa" name="papeldecapa">
                 <option value="">Escolha o Papel de Capa</option>
-                <option value="230g couche matte">230g couche matte</option>
-                <option value="250g Couche matte">250g Couche matte</option>
-                <option value="300g couche matte">300g couche matte</option>
                 <option value="170g couche matte">170g couche matte</option>
+                <option value="230g couche matte">230g couche matte</option>
+                <option value="250g Supremo">250g Supremo</option>
+                <option value="300g Supremo">300g Supremo</option>
               </select>
             </div>
             <div class="form-group col-md-3">
@@ -355,22 +355,26 @@
               </select>
             </div>
             <div class="form-group col-md-4">
-              <label for="Miolo_Pag_Coloridas">Miolo (Quantidade de Páginas Coloridas)</label>
-              <input type="text" class="form-control" id="qtdpagcoloridas" name="qtdpagcoloridas">
+              <label for="Miolo_Pag_PretoBranco">Miolo (Quantidade de Páginas Preto e Branco)</label>
+              <input type="text" class="form-control" id="qtdpagpretobranco" name="qtdpagpretobranco"
+                onkeypress="return event.charCode >= 48 && event.charCode <= 57">
             </div>
             <div class="form-group col-md-4">
-              <label for="Miolo_Pag_PretoBranco">Miolo (Quantidade de Páginas Preto e Branco)</label>
-              <input type="text" class="form-control" id="qtdpagpretobranco" name="qtdpagpretobranco">
+              <label for="Miolo_Pag_Coloridas">Miolo (Quantidade de Páginas Coloridas)</label>
+              <input type="text" class="form-control" id="qtdpagcoloridas" name="qtdpagcoloridas"
+                onkeypress="return event.charCode >= 48 && event.charCode <= 57">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="Miolo_Tot_Pag">Miolo (Total de Páginas)</label>
-              <input type="text" class="form-control" id="totpag" name="totpag">
+              <input type="text" class="form-control" id="totpag" name="totpag"
+                onkeypress="return event.charCode >= 48 && event.charCode <= 57">
             </div>
             <div class="form-group col-md-6">
               <label for="Tiragem">Tiragem (Informe a quantidade de livros que deseja imprimir)</label>
-              <input type="text" class="form-control" id="tiragem" name="tiragem">
+              <input type="text" class="form-control" id="tiragem" name="tiragem "
+                onkeypress="return event.charCode >= 48 && event.charCode <= 57">
             </div>
           </div>
           <div class="form-group">
@@ -383,12 +387,11 @@
               <input type="text" name="name" id="name" class="form-control inputFileVisible" placeholder="Arquivo">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-fab btn-round btn-primary">
-                  <i class="fa fa-choose">Escolha o arquivo</i>
+                  <i class="fa fa-choose">Escolha o arquivo (Opcional)</i>
                 </button>
               </span>
             </div>
           </div>
-
           <button type="submit" id="contact-submit" class="btn btn-primary">Enviar</button>
         </form>
       </div>
@@ -404,8 +407,8 @@
           </div>
           <p class="description">Orçamento sem compromisso!</p>
           <hr>
-          <p> <i class="fa fa-phone"></i> <a href="tel:3251-8260"
-              style="text-decoration:none">&nbsp;&nbsp;&nbsp;3251-8260</a></p>
+          <p> <i class="fa fa-phone"></i> <a href="tel:55213251-8260" style="text-decoration:none">&nbsp;&nbsp;&nbsp;+55
+              21 3251-8260</a></p>
           <p><i class="fa fa-envelope "></i><a
               href="mailto:atendimento@dobooks.com.br?subject=Contato recebido através do seu site"
               style="text-decoration:none">&nbsp;&nbsp;&nbsp;atendimento@dobooks.com.br</a>
@@ -467,7 +470,17 @@
       var nome = this.files[0].name;
       inputNome.value = nome;
     });
+    function validarEmail(email) {
+      var re = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      if (re.test(email.value)) {
+        return true
+      } else {
+        return alert('Email is invalid')
+      }
+    }
+
   </script>
+  <script src="./assets/js/main.js" type="text/javascript"></script>
   <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
   <script src="./assets/js/core/bootstrap.min.js" type="text/javascript"></script>
